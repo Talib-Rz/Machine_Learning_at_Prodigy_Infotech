@@ -29,6 +29,7 @@ def predict_price(LotArea, TotalBsmtSF, BedroomAbvGr, TotRmsAbvGrd, TotalBath):
 
 def main():
     st.title('House Price Prediction')
+    html_content = load_html_file('House_prediction.html')
     st.write('Enter the details below to predict the house sale price:')
 
     # Input fields
