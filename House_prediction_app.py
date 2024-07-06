@@ -1,19 +1,26 @@
 import streamlit as st
 import joblib
 import numpy as np
+import streamlit.components.v1 as components
+import os
+
+# Assuming the files are in the same directory as the script
+base_dir = os.path.dirname(__file__)
+scaler_path = os.path.join(base_dir, 'scaler.pkl')
+model_path = os.path.join(base_dir, 'model.pkl')
 
 # Load the scaler and model
-scaler = joblib.load('scaler.pkl')
-model = joblib.load('model.pkl')
+scaler = joblib.load(scaler_path)
+model = joblib.load(model_path)
 
 st.title("House Prediction App")
 
 # Read the HTML file content
-with open("templates/House_prediction.html", "r") as file:
+with open(os.path.join(base_dir, "templates/House_prediction.html"), "r") as file:
     html_content = file.read()
 
 # Display HTML content
-st.markdown(html_content, unsafe_allow_html=True)
+components.html(html_content, height=600)
 
 # Form inputs
 lot_area = st.number_input('Lot Area', min_value=0)
