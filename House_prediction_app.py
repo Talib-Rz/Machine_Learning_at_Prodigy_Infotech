@@ -6,9 +6,14 @@ import numpy as np
 scaler = joblib.load('scaler.pkl')
 model = joblib.load('model.pkl')
 
-# Streamlit app title and description
 st.title("House Prediction App")
-st.write("Enter the details below to predict the house price:")
+
+# Read the HTML file content
+with open("templates/House_prediction.html", "r") as file:
+    html_content = file.read()
+
+# Display HTML content
+st.markdown(html_content, unsafe_allow_html=True)
 
 # Form inputs
 lot_area = st.number_input('Lot Area', min_value=0)
