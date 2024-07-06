@@ -1,30 +1,31 @@
-from flask import Flask, render_template, request
 import streamlit as st
 import joblib
 import numpy as np
-
-House_prediction_app = Flask(__name__)
 
 # Load the scaler and model
 scaler = joblib.load('scaler.pkl')
 model = joblib.load('model.pkl')
 
+# Streamlit app title and description
+st.title("House Prediction App")
+st.write("Enter the details below to predict the house price:")
 
-@House_prediction_app.route('/')
-def home():
-    return render_template('House_prediction.html')
+# Form inputs
+lot_area = st.number_input('Lot Area', min_value=0)
+total_bsmt_sf = st.number_input('Total Basement SF', min_value=0)
+bedroom_abv_gr = st.number_input('Bedrooms Above Grade', min_value=0)
+tot_rms_abv_grd = st.number_input('Total Rooms Above Grade', min_value=0)
+total_bath = st.number_input('Total Bathrooms', min_value=0)
 
-
-@House_prediction_app.route('/predict', methods=['POST'])
-def predict_price():
+if st.button('Predict'):
     try:
-        # Retrieve form data
+        # Collect input data
         input_data = [
-            float(request.form['LotArea']),
-            float(request.form['TotalBsmtSF']),
-            float(request.form['BedroomAbvGr']),
-            float(request.form['TotRmsAbvGrd']),
-            float(request.form['TotalBath'])
+            lot_area,
+            total_bsmt_sf,
+            bedroom_abv_gr,
+            tot_rms_abv_grd,
+            total_bath
         ]
 
         # Convert to numpy array and reshape
@@ -36,13 +37,7 @@ def predict_price():
         # Make prediction
         prediction = model.predict(scaled_input_data)[0]
 
-        # Format result
-        result = f'Predicted Sale Price: ₹{prediction:,.2f}'
+        # Display result
+        st.success(f'Predicted Sale Price: ₹{prediction:,.2f}')
     except Exception as e:
-        result = f'Error: {e}'
-
-    return render_template('House_prediction.html', result=result)
-
-
-if __name__ == '__main__':
-    House_prediction_app.run(debug=True)
+        st.error(f'Error: {e}')
