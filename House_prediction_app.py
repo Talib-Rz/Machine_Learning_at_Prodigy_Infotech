@@ -6,6 +6,12 @@ import numpy as np
 scaler = joblib.load('scaler.pkl')
 model = joblib.load('model.pkl')
 
+# Function to load HTML file
+def load_html_file(file_path):
+    with open(file_path, 'r') as f:
+        html_content = f.read()
+    return html_content
+
 def predict_price(LotArea, TotalBsmtSF, BedroomAbvGr, TotRmsAbvGrd, TotalBath):
     try:
         # Prepare input data
