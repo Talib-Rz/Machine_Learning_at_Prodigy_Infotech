@@ -40,7 +40,10 @@ def main():
     TotalBath = st.number_input('Total Bathrooms')
 
     if st.button('Predict'):
-        prediction = predict_price(LotArea, TotalBsmtSF, BedroomAbvGr, TotRmsAbvGrd, TotalBath)
+    prediction = predict_price(LotArea, TotalBsmtSF, BedroomAbvGr, TotRmsAbvGrd, TotalBath)
+    if prediction < 0:
+        st.write('Enter valid details')
+    else:
         st.write(f'Predicted Sale Price: ₹{prediction:,.2f}')
 
 if __name__ == '__main__':
