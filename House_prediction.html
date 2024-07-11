@@ -57,19 +57,19 @@
         <h2>Enter House Features</h2>
         <form action="/predict" method="post">
             <label for="LotArea">Lot Area:</label>
-            <input type="number" id="LotArea" name="LotArea" value="{{ request.form.LotArea }}" required><br><br>
+            <input type="number" id="LotArea" name="LotArea" value="{{  request.form.LotArea or 4000 }}" required><br><br>
 
             <label for="TotalBsmtSF">Total Basement SF:</label>
-            <input type="number" id="TotalBsmtSF" name="TotalBsmtSF" value="{{ request.form.TotalBsmtSF }}" required><br><br>
+            <input type="number" id="TotalBsmtSF" name="TotalBsmtSF" value="{{ request.form.TotalBsmtSF or 3500 }}" required><br><br>
 
             <label for="BedroomAbvGr">Bedrooms Above Ground:</label>
-            <input type="number" id="BedroomAbvGr" name="BedroomAbvGr" value="{{ request.form.BedroomAbvGr }}" required><br><br>
+            <input type="number" id="BedroomAbvGr" name="BedroomAbvGr" value="{{ request.form.BedroomAbvGr or 6 }}" required><br><br>
 
             <label for="TotRmsAbvGrd">Total Rooms Above Ground:</label>
-            <input type="number" id="TotRmsAbvGrd" name="TotRmsAbvGrd" value="{{ request.form.TotRmsAbvGrd }}" required><br><br>
+            <input type="number" id="TotRmsAbvGrd" name="TotRmsAbvGrd" value="{{ request.form.TotRmsAbvGrd or 8 }}" required><br><br>
 
             <label for="TotalBath">Total Bath:</label>
-            <input type="number" id="TotalBath" name="TotalBath" value="{{ request.form.TotalBath }}" required><br><br>
+            <input type="number" id="TotalBath" name="TotalBath" value="{{ request.form.TotalBath or 2 }}" required><br><br>
 
             <input type="submit" value="Predict">
         </form>
