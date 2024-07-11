@@ -41,7 +41,7 @@ def main():
 
     if st.button('Predict'):
         prediction = predict_price(LotArea, TotalBsmtSF, BedroomAbvGr, TotRmsAbvGrd, TotalBath)
-        if (prediction[0]) < 0:
+        if (prediction < 0) :
           st.write('Enter valid details')
         else:
           st.write(f'Predicted Sale Price: ${prediction:,.2f}')
