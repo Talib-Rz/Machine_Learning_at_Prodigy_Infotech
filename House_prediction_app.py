@@ -44,7 +44,7 @@ def main():
         if (prediction[0]) < 0:
           st.write('Enter valid details')
         else:
-          st.write(f'Predicted Sale Price: ₹{prediction:,.2f}')
+          st.write(f'Predicted Sale Price: ${prediction:,.2f}')
         
 if __name__ == '__main__':
     main()
